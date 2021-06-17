@@ -1,0 +1,176 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/screens/lobby/Lobby.gd" type="Script" id=2]
+[ext_resource path="res://scenes/ui/UnderlineNinePatchRect.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/SceneTransition.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/Background.tscn" type="PackedScene" id=5]
+
+[node name="Lobby" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" parent="." instance=ExtResource( 5 )]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 515.0
+margin_top = 257.0
+margin_right = 765.0
+margin_bottom = 462.0
+
+[node name="TitleCenter" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 24.0
+
+[node name="LobbyTitle" type="Label" parent="CenterContainer/VBoxContainer/TitleCenter"]
+margin_left = 32.0
+margin_right = 218.0
+margin_bottom = 24.0
+text = "Develo's Lobby"
+align = 1
+
+[node name="Separator" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 33.0
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/Separator"]
+margin_right = 250.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 250, 5 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Separator2" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 37.0
+margin_right = 250.0
+margin_bottom = 42.0
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/Separator2"]
+margin_right = 250.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 250, 5 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 250.0
+margin_bottom = 70.0
+text = "Options"
+align = 1
+
+[node name="LockedHSplit" type="HSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 74.0
+margin_right = 250.0
+margin_bottom = 98.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/LockedHSplit"]
+margin_right = 171.0
+margin_bottom = 24.0
+text = "Lobby Locked:"
+
+[node name="CheckBox" type="CheckBox" parent="CenterContainer/VBoxContainer/LockedHSplit"]
+margin_left = 183.0
+margin_right = 250.0
+margin_bottom = 24.0
+disabled = true
+
+[node name="RoundsHSplit" type="HSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 102.0
+margin_right = 250.0
+margin_bottom = 127.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/RoundsHSplit"]
+margin_right = 96.0
+margin_bottom = 24.0
+text = "Rounds:"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/RoundsHSplit"]
+margin_left = 108.0
+margin_right = 250.0
+margin_bottom = 25.0
+text = "5"
+editable = false
+
+[node name="UnderlineNinePatchRect" parent="CenterContainer/VBoxContainer/RoundsHSplit/LineEdit" instance=ExtResource( 3 )]
+
+[node name="DrawTimeHSplit" type="HSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 131.0
+margin_right = 250.0
+margin_bottom = 156.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/DrawTimeHSplit"]
+margin_right = 139.0
+margin_bottom = 24.0
+text = "Draw Time:"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/DrawTimeHSplit"]
+margin_left = 151.0
+margin_right = 250.0
+margin_bottom = 25.0
+text = "100"
+editable = false
+
+[node name="UnderlineNinePatchRect" parent="CenterContainer/VBoxContainer/DrawTimeHSplit/LineEdit" instance=ExtResource( 3 )]
+
+[node name="Separator3" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 160.0
+margin_right = 250.0
+margin_bottom = 165.0
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/Separator3"]
+margin_right = 250.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 250, 5 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="ButtonCenter" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 169.0
+margin_right = 250.0
+margin_bottom = 205.0
+
+[node name="ButtonMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer/ButtonCenter"]
+margin_left = 29.0
+margin_right = 220.0
+margin_bottom = 36.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ButtonHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 186.0
+margin_bottom = 31.0
+custom_constants/separation = 20
+
+[node name="Leave" type="Button" parent="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox"]
+margin_right = 77.0
+margin_bottom = 26.0
+text = "Leave"
+
+[node name="Start" type="Button" parent="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox"]
+margin_left = 97.0
+margin_right = 181.0
+margin_bottom = 26.0
+text = "Start"
+
+[node name="SceneTransitionTween" parent="." instance=ExtResource( 4 )]
+
+[connection signal="toggled" from="CenterContainer/VBoxContainer/LockedHSplit/CheckBox" to="." method="locked_option_changed"]
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/RoundsHSplit/LineEdit" to="." method="rounds_option_changed"]
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/DrawTimeHSplit/LineEdit" to="." method="draw_time_option_changed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox/Leave" to="." method="_on_Leave_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox/Start" to="." method="start_game"]

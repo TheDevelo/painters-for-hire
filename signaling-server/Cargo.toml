@@ -1,0 +1,15 @@
+[package]
+name = "signaling-server"
+version = "0.2.0"
+authors = ["Robert Fuchs <robertfuchsyoshi@gmail.com>"]
+edition = "2018"
+
+[dependencies]
+actix = "0.8.3"
+actix-web = "1.0.0"
+actix-web-actors = "1.0.0"
+
+log = "0.4.7"
+env_logger = "0.6.2"
+
+rand = "0.7.0"

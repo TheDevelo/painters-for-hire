@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="PlayerCenter" type="CenterContainer" groups=[
+"lobby_player",
+]]
+margin_right = 97.0
+margin_bottom = 14.0
+
+[node name="PlayerName" type="Label" parent="."]
+margin_left = 26.0
+margin_right = 71.0
+margin_bottom = 14.0
+text = "Develo"

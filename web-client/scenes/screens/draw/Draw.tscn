@@ -1,0 +1,259 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/screens/draw/Draw.gd" type="Script" id=2]
+[ext_resource path="res://scenes/SceneTransition.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/screens/draw/DrawableCanvas.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/screens/draw/ColorPicker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ui/Background.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/clear_icon.png" type="Texture" id=7]
+[ext_resource path="res://scripts/screens/draw/CanvasCursor.gd" type="Script" id=8]
+[ext_resource path="res://scenes/ui/Sidebar.tscn" type="PackedScene" id=9]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.215686, 0.356863, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.141176, 0.231373, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0, 0.188235, 0.305882, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="DrawScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Background" parent="." instance=ExtResource( 6 )]
+
+[node name="Sidebar" parent="." instance=ExtResource( 9 )]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 300.0
+custom_constants/separation = 20
+
+[node name="TimerMargin" type="MarginContainer" parent="HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 720.0
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/TimerMargin"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 120.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 70, 70 )
+size_flags_vertical = 0
+color = Color( 0.866667, 0.866667, 0.866667, 1 )
+
+[node name="TimerLabel" type="Label" parent="HBoxContainer/TimerMargin/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "999"
+align = 1
+valign = 1
+
+[node name="CanvasCenter" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 140.0
+margin_right = 740.0
+margin_bottom = 720.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CanvasCenter"]
+margin_top = 3.0
+margin_right = 600.0
+margin_bottom = 716.0
+
+[node name="Prompt" type="Label" parent="HBoxContainer/CanvasCenter/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 79.0
+rect_min_size = Vector2( 0, 79 )
+align = 1
+autowrap = true
+clip_text = true
+
+[node name="DrawableCanvas" parent="HBoxContainer/CanvasCenter/VBoxContainer" instance=ExtResource( 4 )]
+margin_top = 83.0
+margin_bottom = 683.0
+
+[node name="Button" type="Button" parent="HBoxContainer/CanvasCenter/VBoxContainer"]
+margin_top = 687.0
+margin_right = 600.0
+margin_bottom = 713.0
+text = "SUBMIT"
+
+[node name="ColorCenter" type="CenterContainer" parent="HBoxContainer"]
+margin_left = 760.0
+margin_right = 900.0
+margin_bottom = 720.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ColorCenter"]
+margin_top = 35.0
+margin_right = 140.0
+margin_bottom = 685.0
+custom_constants/separation = 10
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/ColorCenter/VBoxContainer"]
+margin_right = 140.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+custom_constants/vseparation = 0
+custom_constants/hseparation = 0
+columns = 2
+
+[node name="White" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_right = 70.0
+margin_bottom = 70.0
+
+[node name="Black" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_right = 140.0
+margin_bottom = 70.0
+palette_index = 1
+
+[node name="LightGray" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 70.0
+margin_right = 70.0
+margin_bottom = 140.0
+palette_index = 2
+
+[node name="DarkGray" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_top = 70.0
+margin_right = 140.0
+margin_bottom = 140.0
+palette_index = 3
+
+[node name="Pink" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 140.0
+margin_right = 70.0
+margin_bottom = 210.0
+palette_index = 4
+
+[node name="Red" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_top = 140.0
+margin_right = 140.0
+margin_bottom = 210.0
+palette_index = 5
+
+[node name="Orange" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 210.0
+margin_right = 70.0
+margin_bottom = 280.0
+palette_index = 6
+
+[node name="Yellow" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_top = 210.0
+margin_right = 140.0
+margin_bottom = 280.0
+palette_index = 7
+
+[node name="LightGreen" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 280.0
+margin_right = 70.0
+margin_bottom = 350.0
+palette_index = 8
+
+[node name="DarkGreen" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_top = 280.0
+margin_right = 140.0
+margin_bottom = 350.0
+palette_index = 9
+
+[node name="LightBlue" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 350.0
+margin_right = 70.0
+margin_bottom = 420.0
+palette_index = 10
+
+[node name="DarkBlue" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_top = 350.0
+margin_right = 140.0
+margin_bottom = 420.0
+palette_index = 11
+
+[node name="Lavender" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 420.0
+margin_right = 70.0
+margin_bottom = 490.0
+palette_index = 12
+
+[node name="Violet" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_top = 420.0
+margin_right = 140.0
+margin_bottom = 490.0
+palette_index = 13
+
+[node name="Tan" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 490.0
+margin_right = 70.0
+margin_bottom = 560.0
+palette_index = 14
+
+[node name="Brown" parent="HBoxContainer/ColorCenter/VBoxContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 70.0
+margin_top = 490.0
+margin_right = 140.0
+margin_bottom = 560.0
+palette_index = 15
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/ColorCenter/VBoxContainer"]
+margin_top = 570.0
+margin_right = 140.0
+margin_bottom = 650.0
+
+[node name="ClearButton" type="Button" parent="HBoxContainer/ColorCenter/VBoxContainer/CenterContainer"]
+margin_left = 30.0
+margin_right = 110.0
+margin_bottom = 80.0
+size_flags_horizontal = 0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+icon = ExtResource( 7 )
+
+[node name="CanvasCursor" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 100.0
+
+[node name="SceneTransitionTween" parent="." instance=ExtResource( 3 )]
+[connection signal="pressed" from="HBoxContainer/CanvasCenter/VBoxContainer/Button" to="." method="submit_drawing"]
+[connection signal="pressed" from="HBoxContainer/ColorCenter/VBoxContainer/CenterContainer/ClearButton" to="." method="clear_canvas"]
+[connection signal="timeout" from="Timer" to="." method="submit_drawing"]

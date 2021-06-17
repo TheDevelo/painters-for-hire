@@ -1,0 +1,46 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+}
+
+[application]
+
+config/name="Painters For Hire"
+run/main_scene="res://scenes/screens/MainMenu.tscn"
+run/low_processor_mode=true
+boot_splash/image="res://assets/boot_splash.png"
+boot_splash/fullsize=false
+boot_splash/bg_color=Color( 0.0941176, 0.321569, 0.352941, 1 )
+config/icon="res://assets/icon.png"
+
+[autoload]
+
+Global="*res://scripts/autoloads/Global.gd"
+Network="*res://scripts/autoloads/Network.gd"
+Signaling="*res://scenes/autoloads/Signaling.tscn"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/stretch/mode="2d"
+window/stretch/aspect="expand"
+
+[network]
+
+limits/webrtc/max_channel_in_buffer_kb=2048
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+environment/default_clear_color=Color( 0.0941176, 0.321569, 0.352941, 1 )
+environment/default_environment="res://resources/default_env.tres"

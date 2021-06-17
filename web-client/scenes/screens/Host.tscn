@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/screens/Host.gd" type="Script" id=2]
+[ext_resource path="res://scenes/SceneTransition.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ui/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/UnderlineNinePatchRect.tscn" type="PackedScene" id=5]
+
+[node name="Host Menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 451.0
+margin_top = 327.0
+margin_right = 829.0
+margin_bottom = 392.0
+
+[node name="NameHSplit" type="HSplitContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 378.0
+margin_bottom = 25.0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/NameHSplit"]
+margin_right = 66.0
+margin_bottom = 24.0
+text = "Name:"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/NameHSplit"]
+margin_left = 78.0
+margin_right = 378.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 300, 0 )
+max_length = 20
+
+[node name="UnderlineNinePatchRect" parent="CenterContainer/VBoxContainer/NameHSplit/LineEdit" instance=ExtResource( 5 )]
+
+[node name="ButtonMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 378.0
+margin_bottom = 65.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ButtonHSplit" type="HSplitContainer" parent="CenterContainer/VBoxContainer/ButtonMargin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 373.0
+margin_bottom = 31.0
+dragger_visibility = 1
+
+[node name="CancelButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonMargin/ButtonHSplit"]
+margin_right = 91.0
+margin_bottom = 26.0
+text = "Cancel"
+
+[node name="HostButton" type="Button" parent="CenterContainer/VBoxContainer/ButtonMargin/ButtonHSplit"]
+margin_left = 103.0
+margin_right = 368.0
+margin_bottom = 26.0
+text = "Host"
+
+[node name="SceneTransitionTween" parent="." instance=ExtResource( 3 )]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonMargin/ButtonHSplit/CancelButton" to="." method="_on_CancelButton_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonMargin/ButtonHSplit/HostButton" to="." method="host_lobby"]

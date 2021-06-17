@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/screens/Settings.gd" type="Script" id=2]
+[ext_resource path="res://scenes/SceneTransition.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ui/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ui/UnderlineNinePatchRect.tscn" type="PackedScene" id=5]
+
+[node name="Settings" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 322.0
+margin_top = 309.0
+margin_right = 957.0
+margin_bottom = 411.0
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 635.0
+margin_bottom = 24.0
+text = "Settings"
+align = 1
+
+[node name="Separator" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 635.0
+margin_bottom = 33.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer/VBoxContainer/Separator"]
+margin_left = 192.0
+margin_right = 442.0
+margin_bottom = 5.0
+rect_min_size = Vector2( 250, 5 )
+color = Color( 0, 0, 0, 1 )
+
+[node name="SignalingCenter" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 37.0
+margin_right = 635.0
+margin_bottom = 62.0
+
+[node name="SignalingHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer/SignalingCenter"]
+margin_right = 635.0
+margin_bottom = 25.0
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/SignalingCenter/SignalingHBox"]
+margin_right = 225.0
+margin_bottom = 24.0
+text = "Signaling Server:"
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/SignalingCenter/SignalingHBox"]
+margin_left = 235.0
+margin_right = 635.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 400, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="UnderlineNinePatchRect" parent="CenterContainer/VBoxContainer/SignalingCenter/SignalingHBox/LineEdit" instance=ExtResource( 5 )]
+
+[node name="ButtonCenter" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 66.0
+margin_right = 635.0
+margin_bottom = 102.0
+
+[node name="ButtonMargin" type="MarginContainer" parent="CenterContainer/VBoxContainer/ButtonCenter"]
+margin_left = 224.0
+margin_right = 411.0
+margin_bottom = 36.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="ButtonHBox" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 182.0
+margin_bottom = 31.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cancel" type="Button" parent="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox"]
+margin_right = 91.0
+margin_bottom = 26.0
+text = "Cancel"
+
+[node name="Save" type="Button" parent="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox"]
+margin_left = 111.0
+margin_right = 177.0
+margin_bottom = 26.0
+text = "Save"
+
+[node name="SceneTransitionTween" parent="." instance=ExtResource( 3 )]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox/Cancel" to="." method="cancel_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/ButtonCenter/ButtonMargin/ButtonHBox/Save" to="." method="save_pressed"]

@@ -1,0 +1,87 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://resources/ui_theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/ui/Sidebar.gd" type="Script" id=2]
+
+[node name="Sidebar" type="Control" groups=[
+"sidebar",
+"static",
+]]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -360.0
+margin_bottom = -360.0
+rect_min_size = Vector2( 300, 720 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+margin_right = 300.0
+margin_bottom = 720.0
+color = Color( 0.835294, 0.913725, 1, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 300.0
+margin_bottom = 70.0
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeaderCenter" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 67.0
+
+[node name="HeaderMargin" type="MarginContainer" parent="VBoxContainer/HeaderCenter"]
+margin_left = 39.0
+margin_right = 261.0
+margin_bottom = 67.0
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HeaderCenter/HeaderMargin"]
+margin_top = 10.0
+margin_right = 222.0
+margin_bottom = 62.0
+
+[node name="LobbyHBox" type="HBoxContainer" parent="VBoxContainer/HeaderCenter/HeaderMargin/VBoxContainer"]
+margin_right = 222.0
+margin_bottom = 24.0
+
+[node name="LeftLabel" type="Label" parent="VBoxContainer/HeaderCenter/HeaderMargin/VBoxContainer/LobbyHBox"]
+margin_right = 182.0
+margin_bottom = 24.0
+text = "Lobby (Locked:"
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer/HeaderCenter/HeaderMargin/VBoxContainer/LobbyHBox"]
+margin_left = 186.0
+margin_right = 210.0
+margin_bottom = 24.0
+disabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightLabel" type="Label" parent="VBoxContainer/HeaderCenter/HeaderMargin/VBoxContainer/LobbyHBox"]
+margin_left = 214.0
+margin_right = 222.0
+margin_bottom = 24.0
+text = ")"
+
+[node name="RoundLabel" type="Label" parent="VBoxContainer/HeaderCenter/HeaderMargin/VBoxContainer"]
+margin_top = 28.0
+margin_right = 222.0
+margin_bottom = 52.0
+text = "Round #1"
+align = 1
+
+[node name="Separator" type="ColorRect" parent="VBoxContainer"]
+margin_top = 67.0
+margin_right = 300.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 300, 3 )
+color = Color( 0, 0, 0, 1 )
+[connection signal="toggled" from="VBoxContainer/HeaderCenter/HeaderMargin/VBoxContainer/LobbyHBox/CheckBox" to="." method="locked_option_changed"]
