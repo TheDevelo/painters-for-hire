@@ -49,7 +49,7 @@ func quit():
 	if failure_check_timer.is_connected("timeout", self, "failure_check"):
 		failure_check_timer.disconnect("timeout", self, "failure_check")
 	if OS.get_name() == 'HTML5':
-		JavaScript.eval("updateLobby('')")
+		JavaScript.eval("window.parent.updateLobby('')")
 
 func ws_connection_established(protocol, lobby_str):
 	var server = ws_client.get_peer(1)
@@ -80,7 +80,7 @@ func ws_message_received():
 			Global.change_scene(Global.Scenes.Lobby)
 			reset_prompt()
 		if OS.get_name() == 'HTML5':
-			JavaScript.eval("updateLobby('{lobby}')".format({'lobby': Global.lobby}))
+			JavaScript.eval("window.parent.updateLobby('{lobby}')".format({'lobby': Global.lobby}))
 	
 	if packet_str[0] == "D":
 		quit()

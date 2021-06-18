@@ -2,7 +2,7 @@ extends Control
 
 func _ready():
 	if OS.get_name() == 'HTML5':
-		var data = JavaScript.eval("getLobby()")
+		var data = JavaScript.eval("window.parent.getLobby()")
 		if typeof(data) == TYPE_STRING:
 			get_tree().change_scene(Global.join_scene) 
 

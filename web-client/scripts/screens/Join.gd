@@ -9,7 +9,7 @@ onready var join_button = $CenterContainer/VBoxContainer/ButtonMargin/ButtonHSpl
 func _ready():
 	button_hsplit.split_offset = (join_button.rect_size.x - cancel_button.rect_size.x) / 2
 	if OS.get_name() == 'HTML5':
-		var data = JavaScript.eval("getLobby()")
+		var data = JavaScript.eval("window.parent.getLobby()")
 		if typeof(data) == TYPE_STRING:
 			lobby_textbox.text = data
 
@@ -18,5 +18,5 @@ func join_lobby():
 
 func _on_CancelButton_pressed():
 	if OS.get_name() == 'HTML5':
-		var data = JavaScript.eval("updateLobby('')")
+		var data = JavaScript.eval("window.parent.updateLobby('')")
 	Global.change_scene(Global.Scenes.MainMenu)
