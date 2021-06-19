@@ -25,11 +25,9 @@ func _ready():
 	draw_time_line_edit.text = String(Global.draw_time)
 	rounds_old_text = rounds_line_edit.text
 	draw_time_old_text = draw_time_line_edit.text
+	digits_regex.compile("^[0-9]*$")
 	if get_tree().get_network_unique_id() == Network.host_id:
-		digits_regex.compile("^[0-9]*$")
-		rounds_line_edit.editable = true
-		draw_time_line_edit.editable = true
-		locked_checkbox.disabled = false
+		show_host_controls()
 
 func _process(delta):
 	if Network.update_lobby_players == true:
@@ -38,20 +36,26 @@ func _process(delta):
 			"host": Global.get_player_by_id(Network.host_id)['name'], 
 			"id": Global.lobby
 		}))
-		if get_tree().get_network_unique_id() == Network.host_id && len(Global.players) >= 3:
-			start_button.show()
+		if get_tree().get_network_unique_id() == Network.host_id:
+			show_host_controls()
 		Network.update_lobby_players = false
 	
 	if Network.update_lobby_lock == true:
 		locked_checkbox.pressed = Global.locked
 		Network.update_lobby_lock = false
 
+func show_host_controls():
+	rounds_line_edit.editable = true
+	draw_time_line_edit.editable = true
+	locked_checkbox.disabled = false
+	if len(Global.players) >= 3:
+		start_button.show()
+
 func update_players():
 	for player_center in Global.get_children_in_group(self, "lobby_player"):
 		lobby_vbox.remove_child(player_center)
 	player_num = 0
 	for player in Global.players:
-		#if player['client_id'] != Network.host_id:
 		var lobby_player = load(Global.lobby_player_scene).instance()
 		lobby_player.get_node("PlayerName").set_text(player['name'])
 		lobby_vbox.add_child_below_node(lobby_vbox.get_child(player_num+1), lobby_player)
