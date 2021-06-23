@@ -83,7 +83,7 @@ margin_left = 20.0
 margin_top = 649.0
 margin_right = 349.0
 margin_bottom = 700.0
-text = "Version 0.6.1
+text = "Version 0.6.2
 By Robert \"Develo\" Fuchs"
 __meta__ = {
 "_edit_use_anchors_": false

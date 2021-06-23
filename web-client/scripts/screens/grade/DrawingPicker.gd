@@ -3,9 +3,9 @@ extends MarginContainer
 const drawing_size = Vector2(200, 200)
 
 onready var drawing = $Drawing
-onready var gold = $Gold
-onready var silver = $Silver
-onready var bronze = $Bronze
+onready var gold = $MedalMargin/Gold
+onready var silver = $MedalMargin/Silver
+onready var bronze = $MedalMargin/Bronze
 var player_id
 var texture
 

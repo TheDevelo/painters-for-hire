@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/silver_medal.png" type="Texture" id=3]
 [ext_resource path="res://assets/bronze_medal.png" type="Texture" id=4]
 
-
 [node name="DrawingPicker" type="MarginContainer" groups=[
 "drawing_picker",
 ]]
@@ -14,6 +13,9 @@ margin_bottom = 220.0
 custom_constants/margin_top = 20
 custom_constants/margin_left = 56
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Drawing" type="TextureRect" parent="."]
 margin_left = 56.0
@@ -24,33 +26,44 @@ rect_min_size = Vector2( 200, 200 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Gold" type="TextureRect" parent="."]
+[node name="MedalMargin" type="MarginContainer" parent="."]
 margin_left = 56.0
 margin_top = 20.0
-margin_right = 96.0
-margin_bottom = 60.0
+margin_right = 256.0
+margin_bottom = 220.0
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+
+[node name="Gold" type="TextureRect" parent="MedalMargin"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 50.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Silver" type="TextureRect" parent="."]
-margin_left = 56.0
-margin_top = 20.0
-margin_right = 96.0
-margin_bottom = 60.0
+[node name="Silver" type="TextureRect" parent="MedalMargin"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 50.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 texture = ExtResource( 3 )
 expand = true
 
-[node name="Bronze" type="TextureRect" parent="."]
-margin_left = 56.0
-margin_top = 20.0
-margin_right = 96.0
-margin_bottom = 60.0
+[node name="Bronze" type="TextureRect" parent="MedalMargin"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 50.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 40, 40 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
