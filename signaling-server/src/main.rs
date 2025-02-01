@@ -263,7 +263,7 @@ fn main() {
             .data(server.clone())
             .service(web::resource("/").to(websocket_route))
     })
-    .bind("127.0.0.1:7777")
+    .bind("0.0.0.0:7777")
     .unwrap()
     .start();
 
